@@ -1,15 +1,45 @@
 @import "tailwindcss";
 
+html { color-scheme: light;}
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ffffff;
+  --fg: #171717;
+  --card: #f7f6f3;
+  --border: #e5e5e5;
+  --nav-bg: #ffffff;
+  --nav-fg: #171717;
 }
 
-@theme inline {
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --fg: #ededed;
+  --card: #111111;
+  --border: #2a2a2a;
+  --nav-bg: #0a0a0a;
+  --nav-fg: #f5f5f5;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, Arial, sans-serif;
+  --font-display: var(--font-poppins), var(--font-sans);
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility font-sans {
+  font-family: var(--font-sans);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +49,7 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* hide horizontal scrollbar for the services scroller */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+

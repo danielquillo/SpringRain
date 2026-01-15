@@ -1,103 +1,135 @@
 import Image from "next/image";
+import Link from "next/link";
+import HeroRotator from "./components/hero-rotater";
+
+const COMPANY = "Spring Rain Lawn Sprinkler Inc.";
+const PHONE_DISPLAY = "847-322-5748";
+const PHONE_TEL = "8473225748";
+
+const services = [
+  { name: "New Installations", blurb: "Smart controllers, water-efficient zones" },
+  { name: "Repairs", blurb: "Leaks, broken heads, wiring, controllers" },
+  { name: "Startups", blurb: "Spring turn-on, coverage check" },
+  { name: "Mid-Season Check", blurb: "Adjust for full-bloom plants" },
+  { name: "Winterization", blurb: "Blow-outs before first freeze" },
+];
+
+const cities = ["Highland Park", "Deerfield", "Lake Forest", "Northbrook", "Glenview", "Winnetka"];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+        <HeroRotator />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* JSON-LD for local SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: COMPANY,
+            telephone: PHONE_DISPLAY,
+            url: "https://example.com",
+            areaServed: cities,
+            address: { "@type": "PostalAddress", addressRegion: "IL" },
+            openingHours: "Mo,Tu,We,Th,Fr 08:00-17:00",
+          }),
+        }}
+      />
+
+      {/* HERO (mobile-first) */}
+      <section className="px-4 pt-6 pb-2 max-w-screen-md mx-auto">
+
+        {/* <h1 className="mt-6 text-[34px]/[1.1] md:text-[56px]/[1.05] tracking-tight md:tracking-[-0.01em] font-semibold">
+          The grass might actually be greener.
+        </h1> */}
+
+        <p className="mt-3 text-[15px] text-neutral-600">
+          Design, install, and maintain irrigation that saves water and keeps your lawn thriving.
+        </p>
+
+        {/* Quick lead form */}
+        <form action="/api/contact" method="post" className="mt-5 grid grid-cols-1 gap-3" id="quote">
+          <input name="name" required placeholder="Your name" className="h-12 rounded-lg border border-neutral-300 px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800" />
+          <input name="phone" required inputMode="tel" placeholder="Phone" className="h-12 rounded-lg border border-neutral-300 px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800" />
+          <input name="zip" inputMode="numeric" placeholder="ZIP (optional)" className="h-12 rounded-lg border border-neutral-300 px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800" />
+          <button type="submit" className="h-12 rounded-lg bg-neutral-900 text-white text-[16px] font-medium active:opacity-90">
+            Get a fast quote
+          </button>
+        </form>
+      </section>
+
+      {/* SERVICES (swipeable) */}
+      <section className="mt-8">
+        <h2 className="px-4 max-w-screen-md mx-auto text-[22px] font-semibold">Services</h2>
+        <div className="mt-3 overflow-x-auto no-scrollbar">
+          <ul className="flex gap-3 px-4 pb-2">
+            {services.map((s) => (
+              <li key={s.name} className="min-w-[78%] max-w-[78%] sm:min-w-[360px]">
+                <div className="rounded-2xl border border-neutral-200 p-4 bg-white">
+                  <h3 className="text-[17px] font-medium">{s.name}</h3>
+                  <p className="mt-1 text-[14px] text-neutral-600">{s.blurb}</p>
+                  <Link
+                    href={`/services/${encodeURIComponent(s.name.toLowerCase().replace(/\s+/g, "-"))}`}
+                    className="mt-3 inline-block text-[14px] underline underline-offset-4"
+                  >
+                    Learn more →
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* WHY CHOOSE US */}
+      <section className="px-4 py-8 max-w-screen-md mx-auto">
+        <div className="rounded-2xl bg-[--color-card,#f7f6f3] p-5 border border-neutral-200">
+          <h2 className="text-[22px] font-semibold">Why homeowners choose us</h2>
+          <ul className="mt-3 grid grid-cols-2 gap-3 text-[14px]">
+            <li className="rounded-lg bg-white border border-neutral-200 p-3">Licensed & insured</li>
+            <li className="rounded-lg bg-white border border-neutral-200 p-3">Water-smart designs</li>
+            <li className="rounded-lg bg-white border border-neutral-200 p-3">Same-week repairs</li>
+            <li className="rounded-lg bg-white border border-neutral-200 p-3">3-year workmanship warranty</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* TESTIMONIAL */}
+      <section className="px-4 pb-8 max-w-screen-md mx-auto">
+        <div className="rounded-2xl border border-neutral-200 p-5">
+          <blockquote className="text-[16px]">
+            “They installed a new system and adjusted zones for our gardens — our water bill went down and everything looks healthier.”
+          </blockquote>
+          <p className="mt-2 text-[14px] text-neutral-600">— Taylor M., Highland Park</p>
+        </div>
+      </section>
+
+      {/* SERVICE AREAS */}
+      <section className="px-4 pb-24 max-w-screen-md mx-auto">
+        <h2 className="text-[22px] font-semibold">Service areas</h2>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {cities.map((c) => (
+            <Link
+              key={c}
+              href={`/service-areas/${c.toLowerCase().replace(/\s+/g, "-")}`}
+              className="px-3 h-9 inline-flex items-center rounded-full border border-neutral-300 text-[14px]"
+            >
+              {c}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* STICKY BOTTOM BAR (mobile) */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 md:hidden">
+        <div className="mx-auto max-w-screen-md px-3 py-2 grid grid-cols-3 gap-2">
+          <a href={`tel:${PHONE_TEL}`} className="h-11 rounded-lg border border-neutral-300 flex items-center justify-center text-[14px] font-medium">Call</a>
+          <a href={`sms:${PHONE_TEL}`} className="h-11 rounded-lg border border-neutral-300 flex items-center justify-center text-[14px] font-medium">Text</a>
+          <a href="#quote" className="h-11 rounded-lg bg-neutral-900 text-white flex items-center justify-center text-[14px] font-medium">Quote</a>
+        </div>
+      </div>
+    </>
   );
 }
