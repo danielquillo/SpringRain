@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { clear } from 'console';
 
 type Slide = { src: string; alt: string };
 
@@ -33,19 +32,30 @@ export default function HeroRotator() {
 
   // autoplay
   useEffect(() => {
+  const start = () => {
     if (timer.current) clearInterval(timer.current);
     timer.current = setInterval(nextSlide, AUTOPLAY_MS);
-    return () => {
-        if (timer.current) {
-            clearInterval(timer.current);
-            timer.current = null;
-        }
-    }
-  }, []);
+  };
+  const stop = () => {
+    if (timer.current) clearInterval(timer.current);
+    timer.current = null;
+  };
+
+  const onVis = () => (document.hidden ? stop() : start());
+
+  start();
+  document.addEventListener("visibilitychange", onVis);
+
+  return () => {
+    document.removeEventListener("visibilitychange", onVis);
+    stop();
+  };
+}, []);
+
 
   // seamless reset when reaching clone
   const handleTransitionEnd = () => {
-    if (index === SLIDES.length) {
+    if (index >= SLIDES.length) {
       setIsTransitioning(false);
       setIndex(0);
     }

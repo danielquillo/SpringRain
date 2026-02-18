@@ -94,14 +94,19 @@ export default function Header() {
           <Link
             href="/"
             aria-label="Spring Rain — Home"
-            className="absolute left-1/2 -translate-x-1/2 md:static md:transform-none flex items-center"
+            className="
+                absolute left-1/2 -translate-x-1/2
+                md:static md:translate-x-0
+                md:mr-6
+                flex items-center
+            "
           >
             <Image
               src="/logo.png"
               alt="Spring Rain Lawn Sprinkler Inc."
-              width={160}
-              height={48}
-              className="h-10 w-auto"
+              width={180}
+              height={54}
+              className="h-10 md:h-11 w-auto"
               priority
             />
           </Link>
@@ -125,7 +130,7 @@ export default function Header() {
           {/* DESKTOP CONTENT (replaces mobile clusters) */}
           <div className="hidden md:flex w-full items-center justify-between">
             {/* Left: logo (already rendered above; keep layout consistent) */}
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <Link href="/" aria-label="Spring Rain — Home" className="flex items-center">
                 <Image
                   src="/logo.jpg"
@@ -136,7 +141,7 @@ export default function Header() {
                   priority
                 />
               </Link>
-            </div>
+            </div> */}
 
             {/* Center: nav links */}
             <ul className="hidden md:flex items-center gap-8 text-[15px] text-neutral-800 font-display font-semibold">
