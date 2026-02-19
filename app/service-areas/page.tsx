@@ -15,6 +15,8 @@ const CITIES = [
   "Winnetka",
   "Wilmette",
   "Buffalo Grove",
+  "Arlington Heights",
+  "Libertyville",
 ];
 
 function slugifyCity(city: string) {
@@ -130,7 +132,7 @@ export default function ServiceAreasPage() {
               </div>
             </div>
           </div>
-          
+
         </div>
       </section>
 
