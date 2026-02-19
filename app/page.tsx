@@ -106,7 +106,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div id="quote" className="rounded-3xl border border-[--border] bg-[--bg] shadow-sm p-6 sm:p-8">
+          <div 
+            id="quote" 
+            className="scroll-mt-19 rounded-3xl border border-[--border] bg-[--bg] shadow-sm p-6 sm:p-8"
+          >
             <h3 className="text-lg font-semibold">Get a fast quote</h3>
             <p className="mt-1 text-sm text-[--nav-fg]/70">No spam—just a quick follow‑up.</p>
 
@@ -306,8 +309,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sticky bottom bar (mobile) */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[--border] bg-[--bg]/95 backdrop-blur supports-[backdrop-filter]:bg-[--bg]/80 md:hidden">
+      {/* Sticky bottom bar (mobile), top line is border-t in className below */}
+      <div className="fixed inset-x-0 bottom-0 z-40 rounded-xl border-t border-[--border] bg-[--bg]/95 backdrop-blur supports-[backdrop-filter]:bg-[--bg]/80 md:hidden">
         <div className="mx-auto max-w-screen-xl px-3 py-2 grid grid-cols-3 gap-2">
           <a
             href={`tel:${PHONE_TEL}`}
@@ -332,3 +335,7 @@ export default function Home() {
     </>
   );
 }
+
+
+// Incorrect map, service-areas
+// Quote button take you slightly lower than it should

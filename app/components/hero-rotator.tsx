@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { withBasePath } from '../lib/basePath';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Slide = { src: string; alt: string };
 
@@ -132,9 +133,12 @@ export default function HeroRotator() {
           Take a look at our services to see how we can improve your outdoor space.
         </p>
         <div className="mt-4 flex gap-2">
-          <a href="/services" className="h-11 px-4 rounded-lg bg-black/60 text-white text-[15px] font-medium flex items-center justify-center">
+          <Link
+            href="/services" 
+            className="h-11 px-4 rounded-lg bg-black/60 text-white text-[15px] font-medium flex items-center justify-center"
+          >
             Our services
-          </a>
+          </Link>
         </div>
       </div>
     </section>
