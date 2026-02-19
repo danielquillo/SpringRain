@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+import type { NextConfig } from "next";
 const repo = "SpringRain"; // your repo name EXACTLY
 
 const nextConfig = {
