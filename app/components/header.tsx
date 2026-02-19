@@ -32,7 +32,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur border-b bg-[var(--nav-bg)] border-[var(--border)]">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-3 sm:px-10 lg:px-5">
         {/* NAV BAR */}
         <nav className="relative flex h-16 items-center justify-between">
           {/* LEFT CLUSTER (mobile): hamburger + theme */}
@@ -59,27 +59,18 @@ export default function Header() {
                 )}
               </svg>
             </button>
-
-            {/* Theme toggle BUTTON */}
-            {/* <button
-              onClick={toggleTheme}
-              aria-label="Toggle dark mode"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border bg-[var(--nav-bg)] border-[var(--border)] text-neutral-700 text-[var(--nav-fg)]/80 hover:text-[var(--nav-fg)]"
-              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            >
-              <MoonIcon className="h-5 w-5 text-[var(--nav-fg)]" />
-            </button> */}
           </div>
 
           {/* CENTER LOGO (mobile absolute center; desktop normal) */}
           <Link
-            href="/"
+            href="/" 
             aria-label="Spring Rain — Home"
             className="
                 absolute left-1/2 -translate-x-1/2
                 md:static md:translate-x-0
                 md:mr-6
                 flex items-center
+                md:hidden
             "
           >
             <Image
@@ -109,47 +100,41 @@ export default function Header() {
           </div> */}
 
           {/* DESKTOP CONTENT (replaces mobile clusters) */}
-          <div className="hidden md:flex w-full items-center justify-between">
-
-            {/* Center: nav links */}
-            <ul className="hidden md:flex items-center gap-8 text-[15px] text-neutral-800 font-display font-semibold">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="hover:text-neutral-950 transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="hidden w-full md:flex items-center justify-between">
+            {/* Left Group: Logo + nav */}
+            <div className="flex items-center gap-10">
+              <Link
+                href="/"
+                aria-label="Spring Rain — Home"
+                className="flex items-center"
+              >
+                <Image
+                  src={withBasePath("/logo.png")}
+                  alt="Spring Rain Lawn Sprinkler Inc."
+                  width={180}
+                  height={54}
+                  className="h-11 w-auto"
+                  priority
+                />
+              </Link>
+            
+              {/* Center: Nav */}
+              <ul className="flex items-center gap-8 text-[15px] font-display font-medium">
+                {nav.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="hover:text-neutral-950 transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             {/* Right: theme + call button */}
             <div className="hidden md:flex items-center gap-2">
-              {/* <button
-                onClick={toggleTheme}
-                aria-label="Toggle dark mode"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border bg-[var(--nav-bg)] border-[var(--border)] text-neutral-700"
-                title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-              >
-                {theme === 'dark' ? (
-                  <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M12 3a1 1 0 0 1 1 1v1.1a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 15.8A6.8 6.8 0 1 0 12 5.2a6.8 6.8 0 0 0 0 13.6Z"
-                    />
-                  </svg>
-                ) : (
-                  <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M21 12.8A9 9 0 0 1 11.2 3a.8.8 0 0 0-1.1 1A7.4 7.4 0 0 0 12 20.8c4.2 0 7.6-3.4 7.6-7.6Z"
-                    />
-                  </svg>
-                )}
-              </button> */}
-
               <a
                 href={`tel:${PHONE_TEL}`}
                 className="inline-flex items-center rounded-full border border-amber-900/20 bg-blue-700 text-white px-4 py-2 text-sm font-medium shadow-sm hover:opacity-90"

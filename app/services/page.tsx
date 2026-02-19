@@ -140,7 +140,7 @@ function Section({ s }: { s: ServiceSection }) {
           <div className="mt-5 flex flex-col gap-2 sm:flex-row">
             <a
               href={`tel:${PHONE_TEL}`}
-              className="h-11 px-4 rounded-b-xl bg-neutral-900 text-white text-[15px] font-medium flex items-center justify-center hover:backdrop-opacity-95"
+              className="h-11 px-4 rounded-xl bg-neutral-900 text-white text-[15px] font-medium flex items-center justify-center hover:backdrop-opacity-95"
             >
               Call {PHONE_DISPLAY}      
             </a>
