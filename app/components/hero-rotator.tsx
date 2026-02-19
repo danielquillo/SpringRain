@@ -130,10 +130,7 @@ export default function HeroRotator() {
           Take a look at our services to see how we can improve your outdoor space.
         </p>
         <div className="mt-4 flex gap-2">
-          <a href="tel:8473225748" className="h-11 px-4 rounded-lg bg-white text-neutral-900 text-[15px] font-medium flex items-center justify-center">
-            Call now
-          </a>
-          <a href="#services" className="h-11 px-4 rounded-lg bg-black/60 text-white text-[15px] font-medium flex items-center justify-center backdrop-blur">
+          <a href="/services" className="h-11 px-4 rounded-lg bg-black/60 text-white text-[15px] font-medium flex items-center justify-center">
             Our services
           </a>
         </div>

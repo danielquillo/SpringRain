@@ -1,25 +1,58 @@
 import Image from "next/image";
 import Link from "next/link";
-import HeroRotator from "./components/hero-rotater";
+import HeroRotator from "./components/hero-rotator";
 
 const COMPANY = "Spring Rain Lawn Sprinkler Inc.";
 const PHONE_DISPLAY = "847-322-5748";
 const PHONE_TEL = "8473225748";
 
-const services = [
-  { name: "New Installations", blurb: "Smart controllers, water-efficient zones" },
-  { name: "Repairs", blurb: "Leaks, broken heads, wiring, controllers" },
-  { name: "Startups", blurb: "Spring turn-on, coverage check" },
-  { name: "Mid-Season Check", blurb: "Adjust for full-bloom plants" },
-  { name: "Winterization", blurb: "Blow-outs before first freeze" },
-];
-
 const cities = ["Highland Park", "Deerfield", "Lake Forest", "Northbrook", "Glenview", "Winnetka"];
+
+const serviceCategories = [
+  {
+    title: "Irrigation & Sprinklers",
+    blurb: "Design, installs, repairs, seasonal service.",
+    href: "/services#irrigation",
+    image: "/hero-4.jpg",
+  },
+  {
+    title: "Outdoor Lighting",
+    blurb: "Path, patio, and landscape lighting upgrades.",
+    href: "/services#lighting",
+    image: "/hero-8.jpg",
+  },
+  {
+    title: "Snow Removal",
+    blurb: "Reliable clears for driveways & walkways.",
+    href: "/services#snow",
+    image: "/hero-9.jpg",
+  },
+] as const;
+
+const irrigationServices = [
+  { name: "New Installations", blurb: "Smart controllers, water‑efficient zones" },
+  { name: "Repairs", blurb: "Leaks, broken heads, wiring, controllers" },
+  { name: "Startups", blurb: "Spring turn‑on, coverage check" },
+  { name: "Mid‑Season Check", blurb: "Adjust for growing season" },
+  { name: "Winterization", blurb: "Blow‑outs before first freeze" },
+] as const;
+
+const gallery = [
+  { src: "/hero-1.jpg", alt: "Irrigated lawn" },
+  { src: "/hero-2.jpg", alt: "Front yard irrigation" },
+  { src: "/hero-3.jpg", alt: "Backyard garden irrigation" },
+  { src: "/hero-4.jpg", alt: "Irrigation system installation" },
+  { src: "/hero-5.jpg", alt: "Sprinkler maintenance" },
+  { src: "/hero-6.jpg", alt: "Sprinkler service" },
+  { src: "/hero-7.jpg", alt: "Outdoor work" },
+  { src: "/hero-8.jpg", alt: "Outdoor lighting" },
+  { src: "/hero-9.jpg", alt: "Seasonal service" },
+] as const;
 
 export default function Home() {
   return (
     <>
-        <HeroRotator />
+      <HeroRotator />
 
       {/* JSON-LD for local SEO */}
       <script
@@ -38,96 +71,255 @@ export default function Home() {
         }}
       />
 
-      {/* HERO (mobile-first) */}
-      <section className="px-4 pt-6 pb-2 max-w-screen-md mx-auto">
+      {/* Quick intro + lead form */}
+      <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
+          <div className="rounded-3xl border border-[--border] bg-[--bg] shadow-sm p-6 sm:p-8">
+            <p className="text-sm font-medium text-[--nav-fg]/70">Serving Chicago’s North Shore</p>
+            <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight">
+              Irrigation, lighting, and seasonal service—done cleanly and on schedule.
+            </h2>
+            <p className="mt-2 text-[15px] text-[--nav-fg]/70 max-w-prose">
+              Tell us what you need and we’ll get back quickly with next steps and a fast quote.
+            </p>
 
-        {/* <h1 className="mt-6 text-[34px]/[1.1] md:text-[56px]/[1.05] tracking-tight md:tracking-[-0.01em] font-semibold">
-          The grass might actually be greener.
-        </h1> */}
+            <div className="mt-4 flex flex-wrap gap-2">
+              <a
+                href={`tel:${PHONE_TEL}`}
+                className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium bg-blue-700 text-white shadow-sm hover:opacity-95"
+              >
+                Call {PHONE_DISPLAY}
+              </a>
+              <a
+                href="#quote"
+                className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium border border-[--border] bg-[--bg] hover:bg-black/5"
+              >
+                Get a quote
+              </a>
+              <Link
+                href="/portfolio"
+                className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium border border-[--border] bg-[--bg] hover:bg-black/5"
+              >
+                View photos
+              </Link>
+            </div>
+          </div>
 
-        <p className="mt-3 text-[15px] text-neutral-600">
-          Design, install, and maintain irrigation that saves water and keeps your lawn thriving.
-        </p>
+          <div id="quote" className="rounded-3xl border border-[--border] bg-[--bg] shadow-sm p-6 sm:p-8">
+            <h3 className="text-lg font-semibold">Get a fast quote</h3>
+            <p className="mt-1 text-sm text-[--nav-fg]/70">No spam—just a quick follow‑up.</p>
 
-        {/* Quick lead form */}
-        <form action="/api/contact" method="post" className="mt-5 grid grid-cols-1 gap-3" id="quote">
-          <input name="name" required placeholder="Your name" className="h-12 rounded-lg border border-neutral-300 px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800" />
-          <input name="phone" required inputMode="tel" placeholder="Phone" className="h-12 rounded-lg border border-neutral-300 px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800" />
-          <input name="zip" inputMode="numeric" placeholder="ZIP (optional)" className="h-12 rounded-lg border border-neutral-300 px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800" />
-          <button type="submit" className="h-12 rounded-lg bg-neutral-900 text-white text-[16px] font-medium active:opacity-90">
-            Get a fast quote
-          </button>
-        </form>
+            <form action="/api/contact" method="post" className="mt-4 grid grid-cols-1 gap-3">
+              <input
+                name="name"
+                required
+                placeholder="Your name"
+                className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
+              />
+              <input
+                name="phone"
+                required
+                inputMode="tel"
+                placeholder="Phone"
+                className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
+              />
+              <input
+                name="zip"
+                inputMode="numeric"
+                placeholder="ZIP (optional)"
+                className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
+              />
+              <button
+                type="submit"
+                className="h-12 rounded-xl bg-neutral-900 text-white text-[16px] font-medium active:opacity-90"
+              >
+                Send request
+              </button>
+            </form>
+          </div>
+        </div>
       </section>
 
-      {/* SERVICES (swipeable) */}
-      <section className="mt-8">
-        <h2 className="px-4 max-w-screen-md mx-auto text-[22px] font-semibold">Services</h2>
-        <div className="mt-3 overflow-x-auto no-scrollbar">
-          <ul className="flex gap-3 px-4 pb-2">
-            {services.map((s) => (
-              <li key={s.name} className="min-w-[78%] max-w-[78%] sm:min-w-[360px]">
-                <div className="rounded-2xl border border-neutral-200 p-4 bg-white">
-                  <h3 className="text-[17px] font-medium">{s.name}</h3>
-                  <p className="mt-1 text-[14px] text-neutral-600">{s.blurb}</p>
-                  <Link
-                    href={`/services/${encodeURIComponent(s.name.toLowerCase().replace(/\s+/g, "-"))}`}
-                    className="mt-3 inline-block text-[14px] underline underline-offset-4"
-                  >
-                    Learn more →
-                  </Link>
-                </div>
-              </li>
+      {/* Services (3 main categories) */}
+      <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-10 sm:mt-14">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight">Services</h2>
+            <p className="mt-1 text-sm text-[--nav-fg]/70">Everything you need for a cleaner, brighter outdoor space.</p>
+          </div>
+          <Link href="/services" className="text-sm font-medium underline underline-offset-4">
+            See all
+          </Link>
+        </div>
+
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
+          {serviceCategories.map((s) => (
+            <Link
+              key={s.title}
+              href={s.href}
+              className="group relative overflow-hidden rounded-3xl border border-[--border] bg-[--card] shadow-sm"
+            >
+              <div className="relative h-44">
+                <Image src={s.image} alt={s.title} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold group-hover:underline underline-offset-4 text-[--fg]">
+                  {s.title}
+                </h3>
+                <p className="mt-1 text-sm text-[--nav-fg]/70">{s.blurb}</p>
+                <p className="mt-3 text-sm font-medium">Explore →</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Irrigation quick list (keeps your original content but modernized) */}
+        <div className="mt-10">
+          <div className="flex items-end justify-between gap-4">
+            <h3 className="text-xl font-semibold tracking-tight">Popular irrigation services</h3>
+            <Link href="/services#irrigation" className="text-sm font-medium underline underline-offset-4">
+              Details
+            </Link>
+          </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {irrigationServices.map((it) => (
+              <div key={it.name} className="rounded-2xl border border-[--border] bg-[--bg] p-5 shadow-sm">
+                <h4 className="font-semibold">{it.name}</h4>
+                <p className="mt-1 text-sm text-[--nav-fg]/70">{it.blurb}</p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
-      <section className="px-4 py-8 max-w-screen-md mx-auto">
-        <div className="rounded-2xl bg-[--color-card,#f7f6f3] p-5 border border-neutral-200">
-          <h2 className="text-[22px] font-semibold">Why homeowners choose us</h2>
-          <ul className="mt-3 grid grid-cols-2 gap-3 text-[14px]">
-            <li className="rounded-lg bg-white border border-neutral-200 p-3">Licensed & insured</li>
-            <li className="rounded-lg bg-white border border-neutral-200 p-3">Water-smart designs</li>
-            <li className="rounded-lg bg-white border border-neutral-200 p-3">Same-week repairs</li>
-            <li className="rounded-lg bg-white border border-neutral-200 p-3">3-year workmanship warranty</li>
-          </ul>
+      {/* Photo proof */}
+      <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight">Recent work</h2>
+            <p className="mt-1 text-sm text-[--nav-fg]/70">Real projects from real homes—tap to browse more.</p>
+          </div>
+          <Link href="/portfolio" className="text-sm font-medium underline underline-offset-4">
+            View gallery
+          </Link>
+        </div>
+
+        <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-3">
+          {gallery.slice(0, 9).map((g, idx) => (
+            <div
+              key={g.src}
+              className="relative overflow-hidden rounded-2xl border border-[--border] bg-[--card] aspect-[4/3] shadow-sm"
+            >
+              <Image
+                src={g.src}
+                alt={g.alt}
+                fill
+                sizes="(min-width: 768px) 33vw, 50vw"
+                className="object-cover"
+                priority={idx < 2}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
-      <section className="px-4 pb-8 max-w-screen-md mx-auto">
-        <div className="rounded-2xl border border-neutral-200 p-5">
-          <blockquote className="text-[16px]">
-            “They installed a new system and adjusted zones for our gardens — our water bill went down and everything looks healthier.”
-          </blockquote>
-          <p className="mt-2 text-[14px] text-neutral-600">— Taylor M., Highland Park</p>
+      {/* Why choose us */}
+      <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16">
+        <div className="rounded-3xl border border-[--border] bg-[--card] p-6 sm:p-8 shadow-sm">
+          <h2 className="text-2xl font-semibold tracking-tight">Why homeowners choose us</h2>
+          <p className="mt-1 text-sm text-[--nav-fg]/70">Simple, professional service with work you can see.</p>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { title: "Licensed & insured", desc: "Peace of mind on every job." },
+              { title: "Water‑smart designs", desc: "Efficient coverage that saves." },
+              { title: "Same‑week repairs", desc: "Fast fixes when you need them." },
+              { title: "Clean, respectful crews", desc: "We treat your home like ours." },
+            ].map((b) => (
+              <div key={b.title} className="rounded-2xl border border-[--border] bg-[--bg] p-5">
+                <p className="font-semibold">{b.title}</p>
+                <p className="mt-1 text-sm text-[--nav-fg]/70">{b.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* SERVICE AREAS */}
-      <section className="px-4 pb-24 max-w-screen-md mx-auto">
-        <h2 className="text-[22px] font-semibold">Service areas</h2>
-        <div className="mt-3 flex flex-wrap gap-2">
+      {/* Service areas */}
+      <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 pb-28">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight">Service areas</h2>
+            <p className="mt-1 text-sm text-[--nav-fg]/70">Chicago North Shore and surrounding suburbs.</p>
+          </div>
+          <Link href="/service-areas" className="text-sm font-medium underline underline-offset-4">
+            See all areas
+          </Link>
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-2">
           {cities.map((c) => (
             <Link
               key={c}
               href={`/service-areas/${c.toLowerCase().replace(/\s+/g, "-")}`}
-              className="px-3 h-9 inline-flex items-center rounded-full border border-neutral-300 text-[14px]"
+              className="px-3 h-9 inline-flex items-center rounded-full border border-[--border] bg-[--bg] text-[14px] hover:bg-black/5"
             >
               {c}
             </Link>
           ))}
         </div>
+
+        {/* Contact strip */}
+        <div className="mt-8 rounded-3xl border border-[--border] bg-[--bg] shadow-sm p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h3 className="text-xl font-semibold tracking-tight">Need help this week?</h3>
+            <p className="mt-1 text-sm text-[--nav-fg]/70">Call or request a quote—we’ll respond quickly.</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <a
+              href={`tel:${PHONE_TEL}`}
+              className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium bg-blue-700 text-white shadow-sm hover:opacity-95"
+            >
+              Call {PHONE_DISPLAY}
+            </a>
+            <a
+              href={`sms:${PHONE_TEL}`}
+              className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium border border-[--border] bg-[--bg] hover:bg-black/5"
+            >
+              Text
+            </a>
+            <a
+              href="#quote"
+              className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium border border-[--border] bg-[--bg] hover:bg-black/5"
+            >
+              Quote
+            </a>
+          </div>
+        </div>
       </section>
 
-      {/* STICKY BOTTOM BAR (mobile) */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 md:hidden">
-        <div className="mx-auto max-w-screen-md px-3 py-2 grid grid-cols-3 gap-2">
-          <a href={`tel:${PHONE_TEL}`} className="h-11 rounded-lg border border-neutral-300 flex items-center justify-center text-[14px] font-medium">Call</a>
-          <a href={`sms:${PHONE_TEL}`} className="h-11 rounded-lg border border-neutral-300 flex items-center justify-center text-[14px] font-medium">Text</a>
-          <a href="#quote" className="h-11 rounded-lg bg-neutral-900 text-white flex items-center justify-center text-[14px] font-medium">Quote</a>
+      {/* Sticky bottom bar (mobile) */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[--border] bg-[--bg]/95 backdrop-blur supports-[backdrop-filter]:bg-[--bg]/80 md:hidden">
+        <div className="mx-auto max-w-screen-xl px-3 py-2 grid grid-cols-3 gap-2">
+          <a
+            href={`tel:${PHONE_TEL}`}
+            className="h-11 rounded-xl border border-[--border] flex items-center justify-center text-[14px] font-medium"
+          >
+            Call
+          </a>
+          <a
+            href={`sms:${PHONE_TEL}`}
+            className="h-11 rounded-xl border border-[--border] flex items-center justify-center text-[14px] font-medium"
+          >
+            Text
+          </a>
+          <a
+            href="#quote"
+            className="h-11 rounded-xl bg-neutral-900 text-white flex items-center justify-center text-[14px] font-medium"
+          >
+            Quote
+          </a>
         </div>
       </div>
     </>

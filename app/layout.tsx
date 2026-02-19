@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
       </head>
-
+      
       <body className="font-sans bg-[--bg] text-[--fg]">
         <Header />
         <main>{children}</main>

@@ -6,9 +6,8 @@ import Image from 'next/image';
 
 const nav = [
   { label: 'Services', href: '/services' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'About', href: '/about' },
   { label: 'Service Areas', href: '/service-areas' },
+  { label: 'Portfolio', href: '/portfolio' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -79,7 +78,7 @@ export default function Header() {
               </svg>
             </button>
 
-            {/* Theme toggle */}
+            {/* Theme toggle BUTTON */}
             <button
               onClick={toggleTheme}
               aria-label="Toggle dark mode"
@@ -129,19 +128,6 @@ export default function Header() {
 
           {/* DESKTOP CONTENT (replaces mobile clusters) */}
           <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left: logo (already rendered above; keep layout consistent) */}
-            {/* <div className="flex items-center gap-3">
-              <Link href="/" aria-label="Spring Rain — Home" className="flex items-center">
-                <Image
-                  src="/logo.jpg"
-                  alt="Spring Rain Lawn Sprinkler Inc."
-                  width={180}
-                  height={54}
-                  className="h-11 w-auto"
-                  priority
-                />
-              </Link>
-            </div> */}
 
             {/* Center: nav links */}
             <ul className="hidden md:flex items-center gap-8 text-[15px] text-neutral-800 font-display font-semibold">
@@ -159,7 +145,7 @@ export default function Header() {
 
             {/* Right: theme + call button */}
             <div className="hidden md:flex items-center gap-2">
-              <button
+              {/* <button
                 onClick={toggleTheme}
                 aria-label="Toggle dark mode"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border bg-[var(--nav-bg)] border-[var(--border)] text-neutral-700"
@@ -180,7 +166,7 @@ export default function Header() {
                     />
                   </svg>
                 )}
-              </button>
+              </button> */}
 
               <a
                 href={`tel:${PHONE_TEL}`}
