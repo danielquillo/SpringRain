@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { withBasePath } from "@/app/lib/basePath";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -87,7 +88,7 @@ export default async function CityPage({
             className="rounded-3xl border border-[var(--border)] bg-white overflow-hidden"
           >
             <div className="relative h-44">
-              <Image src={service.img} alt={service.title} fill className="object-cover" />
+              <Image src={withBasePath(service.img)} alt={service.title} fill className="object-cover" />
             </div>
             <div className="p-5">
               <h3 className="text-lg font-semibold">{service.title}</h3>

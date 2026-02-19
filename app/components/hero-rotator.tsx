@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { withBasePath } from '../lib/basePath';
 import Image from 'next/image';
 
 type Slide = { src: string; alt: string };
@@ -110,7 +111,7 @@ export default function HeroRotator() {
         {slides.map((s, i) => (
           <div key={i} className="relative h-full" style={{ width: `${100 / slides.length}%` }}>
             <Image
-              src={s.src}
+              src={withBasePath(s.src)}
               alt={s.alt}
               fill
               sizes="100vw"

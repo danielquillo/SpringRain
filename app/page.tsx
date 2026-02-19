@@ -194,7 +194,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Photo proof */}
+      {/* Recent Work */}
       <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16">
         <div>
           <div>
@@ -213,7 +213,7 @@ export default function Home() {
               className="relative overflow-hidden rounded-2xl border border-[--border] bg-[--card] aspect-[4/3] shadow-sm"
             >
               <Image
-                src={g.src}
+                src={withBasePath(g.src)}
                 alt={g.alt}
                 fill
                 sizes="(min-width: 768px) 33vw, 50vw"

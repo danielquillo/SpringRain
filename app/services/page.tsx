@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withBasePath } from "../lib/basePath";
 
 const PHONE_DISPLAY = "847-322-5748";
 const PHONE_TEL = "8473225748";
@@ -86,7 +87,7 @@ function Section({ s }: { s: ServiceSection }) {
         <div className="relative overflow-hidden rounded-3xl border border-[var(--border)] bg-white lg:col-span-5">
           <div className="relative aspect-[4/3]">
             <Image
-              src={s.image}
+              src={withBasePath(s.image)}
               alt={s.title}
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { withBasePath } from '../lib/basePath';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -82,7 +83,7 @@ export default function Header() {
             "
           >
             <Image
-              src="/logo.png"
+              src={withBasePath("/logo.png")}
               alt="Spring Rain Lawn Sprinkler Inc."
               width={180}
               height={54}

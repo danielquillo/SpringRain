@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useMemo, useState } from "react";
+import { withBasePath } from "../lib/basePath";
 
 const COMPANY = "Spring Rain Lawn Sprinklers Inc";
 const PHONE_DISPLAY = "847-322-5748";
@@ -135,7 +136,7 @@ export default function PortfolioPage() {
               aria-label={`Open photo: ${p.alt}`}
             >
               <Image
-                src={p.src}
+                src={withBasePath(p.src)}
                 alt={p.alt}
                 fill
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
