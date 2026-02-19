@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeroRotator from "./components/hero-rotator";
+import { withBasePath } from "./lib/basePath";
 
 const COMPANY = "Spring Rain Lawn Sprinkler Inc.";
 const PHONE_DISPLAY = "847-322-5748";
@@ -160,7 +161,7 @@ export default function Home() {
               className="group relative overflow-hidden rounded-3xl border border-[--border] bg-[--card] shadow-sm"
             >
               <div className="relative h-44">
-                <Image src={s.image} alt={s.title} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+                <Image src={withBasePath(s.image)} alt={s.title} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
               </div>
               <div className="p-5">
