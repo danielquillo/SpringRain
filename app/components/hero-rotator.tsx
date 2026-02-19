@@ -137,7 +137,7 @@ export default function HeroRotator() {
             href="/services" 
             className="h-11 px-4 rounded-lg bg-black/60 text-white text-[15px] font-medium flex items-center justify-center"
           >
-            Our services
+            Our Services
           </Link>
         </div>
       </div>

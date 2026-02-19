@@ -335,7 +335,3 @@ export default function Home() {
     </>
   );
 }
-
-
-// Incorrect map, service-areas
-// Quote button take you slightly lower than it should
