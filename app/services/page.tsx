@@ -34,7 +34,8 @@ const SECTIONS: ServiceSection[] = [
             "Minor leak repairs and zone balancing",
             "Recommendations for water efficiency",
         ],
-        seasonalNote: "Peak season: Spring startups and mid-summer adjustments. Winterization available before first hard freeze.",
+        // Peak season: Spring startups and mid-summer adjustments. Winterization available before first hard freeze.
+        seasonalNote: "",
     },
     {
         id: "lighting",
@@ -73,7 +74,7 @@ const SECTIONS: ServiceSection[] = [
             "De-icing for traction and safety",
             "Clear communication during winter events"
         ],
-        seasonalNote: "EDIT LATER"
+        seasonalNote: ""
     },
 ];
 

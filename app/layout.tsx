@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins, Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import Header from "./components/header";
 
@@ -31,19 +30,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${inter.variable}`} suppressHydrationWarning>
-      <head>
-        <Script id="theme-init" strategy="beforeInteractive">
-          {`
-            try {
-              var t = localStorage.getItem('theme');
-              if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
-              document.documentElement.setAttribute('data-theme', t);
-            } catch (e) {}
-          `}
-        </Script>
-      </head>
-      
+    <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
       <body className="font-sans bg-[--bg] text-[--fg]">
         <Header />
         <main>{children}</main>

@@ -28,25 +28,6 @@ export function MoonIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    const current =
-      (typeof localStorage !== 'undefined' &&
-        (localStorage.getItem('theme') as 'light' | 'dark' | null)) ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    setTheme(current);
-    document.documentElement.setAttribute('data-theme', current);
-  }, []);
-
-  const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
-    try {
-      localStorage.setItem('theme', next);
-    } catch {}
-    document.documentElement.setAttribute('data-theme', next);
-  };
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur border-b bg-[var(--nav-bg)] border-[var(--border)]">
@@ -79,14 +60,14 @@ export default function Header() {
             </button>
 
             {/* Theme toggle BUTTON */}
-            <button
+            {/* <button
               onClick={toggleTheme}
               aria-label="Toggle dark mode"
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border bg-[var(--nav-bg)] border-[var(--border)] text-neutral-700 text-[var(--nav-fg)]/80 hover:text-[var(--nav-fg)]"
               title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               <MoonIcon className="h-5 w-5 text-[var(--nav-fg)]" />
-            </button>
+            </button> */}
           </div>
 
           {/* CENTER LOGO (mobile absolute center; desktop normal) */}
@@ -111,7 +92,7 @@ export default function Header() {
           </Link>
 
           {/* RIGHT (mobile): call icon */}
-          <div className="md:hidden">
+          {/* <div className="md:hidden">
             <a
               href={`tel:${PHONE_TEL}`}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border bg-[var(--nav-bg)] border-[var(--border)] text-[var(--nav-fg)]/80 hover:text-[var(--nav-fg)]"
@@ -124,7 +105,7 @@ export default function Header() {
                 />
               </svg>
             </a>
-          </div>
+          </div> */}
 
           {/* DESKTOP CONTENT (replaces mobile clusters) */}
           <div className="hidden md:flex w-full items-center justify-between">
