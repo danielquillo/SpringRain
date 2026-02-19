@@ -19,7 +19,7 @@ const SECTIONS: ServiceSection[] = [
         id: "irrigation",
         title: "Irrigation & Sprinklers",
         subtitle: "Installations, repairs, startup, and seasonal maintenance-water-smart and reliable.",
-        image: "/hero-4.jpg",
+        image: "/sprinklers-flowerbed14.jpg",
         bullets: [
             "New system installations & zone expansions",
             "Leak detection, broken heads, wiring & controller troubleshooting",
@@ -41,7 +41,7 @@ const SECTIONS: ServiceSection[] = [
         id: "lighting",
         title: "Outdoor Lighting",
         subtitle: "Beautiful, low-voltage lighting that improves safety, curb appeal, and nighttime comfort.",
-        image: "/hero-8.jpg",
+        image: "/lighting-frontlawn.jpg",
         bullets: [
         "Pathway & driveway lighting",
         "Landscape uplighting (trees, architectural features)",
@@ -61,7 +61,7 @@ const SECTIONS: ServiceSection[] = [
         id: "snow",
         title: "Snow Removal",
         subtitle: "Reliable cleaning and salting of driveway and walkways and commercial properties.",
-        image: "/hero-9.jpg",
+        image: "/snow.jpg",
         bullets: [
             "Driveway clearing",
             "Walkways & steps",

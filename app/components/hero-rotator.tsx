@@ -6,15 +6,16 @@ import Image from 'next/image';
 type Slide = { src: string; alt: string };
 
 const SLIDES: Slide[] = [
-  { src: '/hero-1.jpg', alt: 'Lawn with native plant beds' },
-  { src: '/hero-2.jpg', alt: 'Irrigated front yard with hedges' },
-  { src: '/hero-3.jpg', alt: 'Backyard garden with sprinkler mist' },
-  { src: '/hero-4.jpg', alt: 'Smart irrigation system install' },
-  { src: '/hero-5.jpg', alt: 'Sprinkler testing and maintenance' },
-  { src: '/hero-6.jpg', alt: 'Sprinkler testing and maintenance' },
-  { src: '/hero-7.jpg', alt: 'Sprinkler testing and maintenance' },
-  { src: '/hero-8.jpg', alt: 'Sprinkler testing and maintenance' },
-  { src: '/hero-9.jpg', alt: 'Sprinkler testing and maintenance' },
+  { src: '/sprinklers-flowerbed6.jpg', alt: 'Other Front of house with lighting (night)'},
+  { src: '/sprinklers-lawn2.jpg', alt: 'Other Front of house with lighting (night)'},
+  { src: '/sprinklers-flowerbed7.jpg', alt: 'Other Front of house with lighting (night)'},
+  { src: '/lighting-frontlawn.jpg', alt: 'Front of house with lighting (night)'},
+  { src: '/sprinklers-flowerbed10.jpg', alt: 'Other Front of house with lighting (night)'},
+  { src: '/sprinklers-flowerbed11.jpg', alt: 'Other Front of house with lighting (night)'},
+  { src: '/lighting-fronthouse3.jpg', alt: 'Other Front of house with lighting (night)'},
+  { src: '/sprinklers-plants.jpg', alt: 'Other Front of house with lighting (night)'},
+  { src: '/snow.jpg', alt: 'Other Front of house with lighting (night)'},
+
 ];
 
 const AUTOPLAY_MS = 4000;

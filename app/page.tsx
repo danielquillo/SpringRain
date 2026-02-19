@@ -13,19 +13,19 @@ const serviceCategories = [
     title: "Irrigation & Sprinklers",
     blurb: "Design, installs, repairs, seasonal service.",
     href: "/services#irrigation",
-    image: "/hero-4.jpg",
+    image: "/sprinklers-flowerbed7.jpg",
   },
   {
     title: "Outdoor Lighting",
     blurb: "Path, patio, and landscape lighting upgrades.",
     href: "/services#lighting",
-    image: "/hero-8.jpg",
+    image: "/lighting-frontlawn.jpg",
   },
   {
     title: "Snow Removal",
     blurb: "Reliable clears for driveways & walkways.",
     href: "/services#snow",
-    image: "/hero-9.jpg",
+    image: "/snow.jpg",
   },
 ] as const;
 
@@ -142,7 +142,7 @@ export default function Home() {
 
       {/* Services (3 main categories) */}
       <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-10 sm:mt-14">
-        <div className="flex items-end justify-between gap-4">
+        <div>
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Services</h2>
             <p className="mt-1 text-sm text-[--nav-fg]/70">Everything you need for a cleaner, brighter outdoor space.</p>
@@ -176,7 +176,7 @@ export default function Home() {
 
         {/* Irrigation quick list (keeps your original content but modernized) */}
         <div className="mt-10">
-          <div className="flex items-end justify-between gap-4">
+          <div>
             <h3 className="text-xl font-semibold tracking-tight">Popular irrigation services</h3>
             <Link href="/services#irrigation" className="text-sm font-medium underline underline-offset-4">
               Details
@@ -195,13 +195,13 @@ export default function Home() {
 
       {/* Photo proof */}
       <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16">
-        <div className="flex items-end justify-between gap-4">
+        <div>
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Recent work</h2>
             <p className="mt-1 text-sm text-[--nav-fg]/70">Real projects from real homes—tap to browse more.</p>
           </div>
           <Link href="/portfolio" className="text-sm font-medium underline underline-offset-4">
-            View gallery
+            View full portfolio
           </Link>
         </div>
 
@@ -248,12 +248,17 @@ export default function Home() {
 
       {/* Service areas */}
       <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 pb-28">
-        <div className="flex items-end justify-between gap-4">
+        <div>
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Service areas</h2>
-            <p className="mt-1 text-sm text-[--nav-fg]/70">Chicago North Shore and surrounding suburbs.</p>
+            <p className="mt-1 text-sm text-[--nav-fg]/70">
+              Chicago North Shore and surrounding suburbs.
+            </p>
           </div>
-          <Link href="/service-areas" className="text-sm font-medium underline underline-offset-4">
+          <Link 
+            href="/service-areas" 
+            className="mt-2 inline-block text-sm font-medium underline underline-offset-4"
+          >
             See all areas
           </Link>
         </div>
@@ -269,6 +274,7 @@ export default function Home() {
             </Link>
           ))}
         </div>
+        
 
         {/* Contact strip */}
         <div className="mt-8 rounded-3xl border border-[--border] bg-[--bg] shadow-sm p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
