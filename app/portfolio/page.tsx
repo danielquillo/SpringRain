@@ -190,7 +190,7 @@ export default function PortfolioPage() {
           >
             <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl bg-black">
               <Image
-                src={filtered[activeIndex].src}
+                src={withBasePath(filtered[activeIndex].src)}
                 alt={filtered[activeIndex].alt}
                 fill
                 sizes="100vw"
