@@ -1,4 +1,5 @@
 import Link from "next/link"
+import QuoteForm from "../components/QuoteForm";
 
 const COMPANY = "Spring Rain Lawn Sprinkler Inc.";
 const PHONE_DISPLAY = "847-322-5748";
@@ -36,86 +37,17 @@ export default function ContactPage() {
           >
             Text
           </a>
-          <a
-          href={`sms:${PHONE_TEL}`}
-          className="h-12 rounded-2xl border border-[var(--border)] bg-white text-neutral-900 text-[15px] font-medium flex items-center justify-center hover:bg-neutral-50"
-          >
-            Request a quote
-          </a>
         </div>
       </section>
       <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 pb-16">
         <div className="grid gap-6 lg:grid-cols-12">
           <div id="quote" className="lg:col-span-7">
             <div className="rounded-3xl border border-[var(--border)] bg-white p-6 sm:p-8 shadow-sm">
-              <h2 className="text-xl font-semibold tracking-tight">Request a quote</h2>
+              <h2 className="text-xl font-semibold tracking-tight">Contact Form</h2>
               <p className="mt-1 text-sm text-neutral-600">
                 Include your city/ZIP for fastest scheduling.
               </p>
-
-              <form action="/api/contact" method="post" className="mt-6 grid grid-cols-1 gap-3">
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <input
-                    name="name"
-                    required
-                    placeholder="Your name"
-                    className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
-                  />
-                  <input
-                    name="phone"
-                    required
-                    inputMode="tel"
-                    placeholder="Phone"
-                    className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
-                  />
-                </div>
-
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <input
-                    name="city"
-                    placeholder="City (optional)"
-                    className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
-                  />
-                  <input
-                    name="zip"
-                    inputMode="numeric"
-                    placeholder="ZIP (optional)"
-                    className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
-                  />
-                </div>
-
-                <select
-                  name="service"
-                  required
-                  defaultValue=""
-                  className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
-                >
-                  <option value="" disabled>
-                    What do you need help with?
-                  </option>
-                  <option value="Irrigation & Sprinklers">Irrigation & Sprinklers</option>
-                  <option value="Outdoor Lighting">Outdoor Lighting</option>
-                  <option value="Snow Removal">Snow Removal</option>
-                </select>
-
-                <textarea
-                  name="message"
-                  rows={5}
-                  placeholder="Briefly describe what you need…"
-                  className="rounded-xl border border-neutral-300 bg-white px-3 py-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
-                />
-
-                <button
-                  type="submit"
-                  className="h-12 rounded-xl bg-neutral-900 text-white text-[16px] font-medium hover:opacity-95 active:opacity-90"
-                >
-                  Send request
-                </button>
-
-                <p className="text-[12px] text-neutral-500">
-                  By submitting, you agree we may contact you by phone/text to coordinate service.
-                </p>
-              </form>
+              <QuoteForm/>
             </div>
           </div>
 

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroRotator from "./components/hero-rotator";
 import { withBasePath } from "./lib/basePath";
+import QuoteForm from "./components/QuoteForm";
 
 const COMPANY = "Spring Rain Lawn Sprinkler Inc.";
 const PHONE_DISPLAY = "847-322-5748";
@@ -95,7 +96,7 @@ export default function Home() {
                 href="#quote"
                 className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium border border-[--border] bg-[--bg] hover:bg-black/5"
               >
-                Get a quote
+                Contact Form
               </a>
               <Link
                 href="/portfolio"
@@ -110,10 +111,10 @@ export default function Home() {
             id="quote" 
             className="scroll-mt-19 rounded-3xl border border-[--border] bg-[--bg] shadow-sm p-6 sm:p-8"
           >
-            <h3 className="text-lg font-semibold">Get a fast quote</h3>
+            <h3 className="text-lg font-semibold">Contact Form</h3>
             <p className="mt-1 text-sm text-[--nav-fg]/70">No spam—just a quick follow‑up.</p>
-
-            <form action="/api/contact" method="post" className="mt-4 grid grid-cols-1 gap-3">
+            <QuoteForm/>
+            {/* <form action="/api/contact" method="post" className="mt-4 grid grid-cols-1 gap-3">
               <input
                 name="name"
                 required
@@ -139,7 +140,7 @@ export default function Home() {
               >
                 Send request
               </button>
-            </form>
+            </form> */}
           </div>
         </div>
       </section>
@@ -284,7 +285,7 @@ export default function Home() {
         <div className="mt-8 rounded-3xl border border-[--border] bg-[--bg] shadow-sm p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h3 className="text-xl font-semibold tracking-tight">Need help this week?</h3>
-            <p className="mt-1 text-sm text-[--nav-fg]/70">Call or request a quote—we’ll respond quickly.</p>
+            <p className="mt-1 text-sm text-[--nav-fg]/70">Call or fill out the contact form—we’ll respond quickly.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <a
@@ -303,7 +304,7 @@ export default function Home() {
               href="#quote"
               className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium border border-[--border] bg-[--bg] hover:bg-black/5"
             >
-              Quote
+              Contact Form
             </a>
           </div>
         </div>
@@ -328,7 +329,7 @@ export default function Home() {
             href="#quote"
             className="h-11 rounded-xl bg-neutral-900 text-white flex items-center justify-center text-[14px] font-medium"
           >
-            Quote
+            Contact Form
           </a>
         </div>
       </div>
