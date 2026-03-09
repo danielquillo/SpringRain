@@ -83,22 +83,6 @@ export default function Header() {
             />
           </Link>
 
-          {/* RIGHT (mobile): call icon */}
-          {/* <div className="md:hidden">
-            <a
-              href={`tel:${PHONE_TEL}`}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border bg-[var(--nav-bg)] border-[var(--border)] text-[var(--nav-fg)]/80 hover:text-[var(--nav-fg)]"
-              aria-label={`Call ${PHONE_DISPLAY}`}
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
-                <path
-                  fill="currentColor"
-                  d="M6.6 10.8c1.5 2.9 3.7 5.1 6.6 6.6l2.2-2.2a1 1 0 011.1-.23c1.2.48 2.6.74 4 .74a1 1 0 011 1v3.2a1 1 0 01-1 1C11.6 21.9 2.1 12.4 2.1 1.5a1 1 0 011-1H6.3a1 1 0 011 1c0 1.4.26 2.8.74 4a1 1 0 01-.23 1.1L5.6 8.6l1 2.2z"
-                />
-              </svg>
-            </a>
-          </div> */}
-
           {/* DESKTOP CONTENT (replaces mobile clusters) */}
           <div className="hidden w-full md:flex items-center justify-between">
             {/* Left Group: Logo + nav */}

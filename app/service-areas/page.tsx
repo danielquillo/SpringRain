@@ -39,28 +39,6 @@ export default function ServiceAreasPage() {
             outdoor lighting, and winter snow removal.
           </p>
         </div>
-
-        {/* Quick CTA strip */}
-        {/* <div className="mt-6 rounded-3xl border border-[var(--border)] bg-white p-4 sm:p-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-[14px] text-neutral-600">Not sure if you're in our area?</p>
-            <p className="text-[16px] font-semibold">Call or request a quick quote.</p>
-          </div>
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <a
-              href={`tel:${PHONE_TEL}`}
-              className="h-11 px-4 rounded-xl bg-neutral-900 text-white text-[15px] font-medium flex items-center justify-center hover:backdrop-opacity-95"
-            >
-              Call {PHONE_DISPLAY}
-            </a>
-            <Link
-              href="/#quote"
-              className="h-11 px-4 rounded-xl border border-[var(--border)] bg-white text-neutral-900 text-[15px] font-medium flex items-center justify-center hover:bg-neutral-50"            
-            >
-              Request a quote
-            </Link>
-          </div>
-        </div> */}
       </section>
 
       {/* Map */}
@@ -68,18 +46,6 @@ export default function ServiceAreasPage() {
         <div className="grid gap-4 lg:grid-cols-12 lg:items-start">
           <div className="lg:col-span-7">
             <div className="rounded-3xl border border-[var(--border)] bg-white overflow-hidden">
-              {/* <div className="relative aspect-[16/9]">
-                <Image
-                  src = "/service-area-map.png"
-                  alt = "Map of our service area"
-                  fill
-                  sizes="(min-width: 1024px) 60vw, 100vw"
-                  className="object-cover"
-                  priority
-                />
-              </div> */}
-
-              {/* Backup */}
               <div className="border-t border-[var(--border)]">
                 <iframe
                   title = "Service area map"
@@ -111,7 +77,7 @@ export default function ServiceAreasPage() {
                 <div className="rounded-2xl border border-[var(--border)] bg-white p-4">
                   <p className="text-[13px] font-semibold">Best way to reach us</p>
                   <p className="mt-1 text-[14px] text-neutral-700">
-                    Call or request a quote—please include your city and ZIP for fastest scheduling.
+                    Call or fill out our contact form—please include your city and ZIP for fastest scheduling.
                   </p>
                 </div>
               </div>
@@ -127,7 +93,7 @@ export default function ServiceAreasPage() {
                   href="/#quote"
                   className="h-11 px-4 rounded-xl border border-[var(--border)] bg-white text-neutral-900 text-[15px] font-medium flex items-center justify-center hover:bg-neutral-50"
                 >
-                  Request a quote
+                  Contact Form
                 </Link>
               </div>
             </div>
@@ -191,7 +157,7 @@ export default function ServiceAreasPage() {
               href="/#quote"
               className="h-11 px-4 rounded-xl border border-[var(--border)] bg-white text-neutral-900 text-[15px] font-medium flex items-center justify-center hover:bg-neutral-50"
             >
-              Request a quote
+              Contact Form
             </Link>
           </div>
         </div>
