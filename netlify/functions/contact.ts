@@ -51,11 +51,35 @@ export const handler: Handler = async (event) => {
         body: JSON.stringify({ ok: false, error: "Missing required fields." }),
       };
     }
+    // Length limits
+    if (
+      name.length > 100 ||
+      email.length > 150 ||
+      phone.length > 30 ||
+      service.length > 100 ||
+      city.length > 100 ||
+      zip.length > 20
+    ) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ ok: false, error: "One or more fields exceed length limits." }),
+      };
+    }
 
+    // email validation
     if (!isValidEmail(email)) {
       return {
         statusCode: 400,
         body: JSON.stringify({ ok: false, error: "Invalid email." }),
+      };
+    }
+
+    // phone validation
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (phoneDigits.length < 10) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ ok: false, error: "Invalid phone number." }),
       };
     }
 
