@@ -114,33 +114,6 @@ export default function Home() {
             <h3 className="text-lg font-semibold">Contact Form</h3>
             <p className="mt-1 text-sm text-[--nav-fg]/70">No spam—just a quick follow‑up.</p>
             <QuoteForm/>
-            {/* <form action="/api/contact" method="post" className="mt-4 grid grid-cols-1 gap-3">
-              <input
-                name="name"
-                required
-                placeholder="Your name"
-                className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
-              />
-              <input
-                name="phone"
-                required
-                inputMode="tel"
-                placeholder="Phone"
-                className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
-              />
-              <input
-                name="zip"
-                inputMode="numeric"
-                placeholder="ZIP (optional)"
-                className="h-12 rounded-xl border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:ring-2 focus:ring-neutral-800"
-              />
-              <button
-                type="submit"
-                className="h-12 rounded-xl bg-neutral-900 text-white text-[16px] font-medium active:opacity-90"
-              >
-                Send request
-              </button>
-            </form> */}
           </div>
         </div>
       </section>
@@ -311,7 +284,7 @@ export default function Home() {
       </section>
 
       {/* Sticky bottom bar (mobile), top line is border-t in className below */}
-      <div className="fixed inset-x-0 bottom-0 z-40 rounded-xl border-t border-[--border] bg-[--bg]/95 backdrop-blur supports-[backdrop-filter]:bg-[--bg]/80 md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-[--border] bg-white supports-[backdrop-filter]:bg-[--bg]/80 md:hidden">
         <div className="mx-auto max-w-screen-xl px-3 py-2 grid grid-cols-3 gap-2">
           <a
             href={`tel:${PHONE_TEL}`}
