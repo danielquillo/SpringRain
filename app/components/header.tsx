@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { withBasePath } from '../lib/basePath';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -17,9 +17,36 @@ const PHONE_TEL = '8473225748';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 20);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  function handleLogoClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (window.location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setOpen(false);
+    }
+  }
 
   return (
-    <header className="sticky top-0 z-50 bg-[var(--nav-bg)] border-b border-[var(--border)] md:bg-white/10 md:backdrop-blur-xs md:border-black/10">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[var(--nav-bg)] border-b border-[var(--border)] md:bg-transparent md:border-transparent"
+          : "bg-[var(--nav-bg)] border-b border-[var(--border)]"
+      }`}
+    >
       <div className="mx-auto px-3 sm:px-10 lg:px-5 pt-2">
         <nav className="relative flex h-16 items-center justify-between">
           {/* MOBILE HEADER - KEEP SAME */}
@@ -50,15 +77,16 @@ export default function Header() {
           {/* MOBILE LOGO - KEEP SAME */}
           <Link
             href="/"
+            onClick={handleLogoClick}
             aria-label="Spring Rain — Home"
             className="absolute left-1/2 -translate-x-1/2 flex items-center md:hidden"
           >
             <Image
-              src={withBasePath('/logo.png')}
+              src={withBasePath('/newlogo.png')}
               alt="Spring Rain Lawn Sprinkler Inc."
               width={180}
               height={54}
-              className="h-10 w-auto"
+              className="h-23 w-auto"
               priority
             />
           </Link>
@@ -68,23 +96,24 @@ export default function Header() {
             <div className="flex items-center gap-4">
               <Link
                 href="/"
+                onClick={handleLogoClick}
                 aria-label="Spring Rain — Home"
                 className="flex items-center shrink-0"
               >
                 <Image
-                  src={withBasePath('/logo.png')}
+                  src={withBasePath('/newlogo.png')}
                   alt="Spring Rain Lawn Sprinkler Inc."
                   width={180}
                   height={54}
-                  className="h-11 w-auto"
+                  className="h-23 w-auto"
                   priority
                 />
               </Link>
             </div>
 
             <div className="flex items-center justify-center flex-1">
-              <div
-                className="hidden md:flex items-center rounded-full border px-2 h-12 backdrop-blur-sm"
+              <div      
+                className="hidden md:flex items-center rounded-full border px-2 h-12 bg-white/95 shadow-[0_12px_35px_rgba(0,0,0,0.12)]"
                 style={{
                   borderColor: 'var(--border)',
                   backgroundColor: 'var(--nav-bg)',
@@ -96,7 +125,7 @@ export default function Header() {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 text-[var(--nav-fg)] hover:bg-black/5"
+                        className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 text-[var(--nav-fg)] hover:bg-black/5"                
                       >
                         {item.label}
                       </Link>
@@ -133,7 +162,7 @@ export default function Header() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="block py-3 text-[16px] text-[var(--nav-fg)]"
+                    className="block py-3 text-[16px] text-[var(--nav-fg) ]"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
