@@ -1,7 +1,12 @@
 import type { Handler } from "@netlify/functions";
 import { Resend } from "resend";
+import { createClient } from "@supabase/supabase-js";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -51,11 +56,35 @@ export const handler: Handler = async (event) => {
         body: JSON.stringify({ ok: false, error: "Missing required fields." }),
       };
     }
+    // Length limits
+    if (
+      name.length > 100 ||
+      email.length > 150 ||
+      phone.length > 30 ||
+      service.length > 100 ||
+      city.length > 100 ||
+      zip.length > 20
+    ) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ ok: false, error: "One or more fields exceed length limits." }),
+      };
+    }
 
+    // email validation
     if (!isValidEmail(email)) {
       return {
         statusCode: 400,
         body: JSON.stringify({ ok: false, error: "Invalid email." }),
+      };
+    }
+
+    // phone validation
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (phoneDigits.length < 10) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ ok: false, error: "Invalid phone number." }),
       };
     }
 
@@ -64,6 +93,27 @@ export const handler: Handler = async (event) => {
       return {
         statusCode: 400,
         body: JSON.stringify({ ok: false, error: "Message too long." }),
+      };
+    }
+
+    const { error: insertError } = await supabase
+      .from("quote_requests")
+      .insert({
+        name,
+        email,
+        phone,
+        city: city || null,
+        zip: zip || null,
+        service,
+        message,
+        status: "new",
+      });
+    
+    if (insertError) {
+      console.error("Supabase insert error:", insertError);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ ok: false, error: "Could not save quote request." }),
       };
     }
 
@@ -91,6 +141,8 @@ export const handler: Handler = async (event) => {
       (phone ? `We may contact you at: ${phone}\n\n` : "") +
       (message ? `Your message:\n${message}\n\n` : "") + 
       `- SpringRain\n`;
+    
+    
 
     // Send owner notification + customer confirmation
     const [ownerResult, customerResult] = await Promise.all([

@@ -15,29 +15,42 @@ const nav = [
 const PHONE_DISPLAY = '847-322-5748';
 const PHONE_TEL = '8473225748';
 
-// Put this in the same file (or /components/icons/MoonIcon.tsx)
-export function MoonIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        fill="currentColor"
-        d="M8.23129 2.24048C9.24338 1.78695 10.1202 2.81145 9.80357 3.70098C8.72924 6.71928 9.38932 10.1474 11.6193 12.3765C13.8606 14.617 17.3114 15.2755 20.3395 14.1819C21.2206 13.8637 22.2173 14.7319 21.7817 15.7199C21.7688 15.7491 21.7558 15.7782 21.7427 15.8074C20.9674 17.5266 19.7272 19.1434 18.1227 20.2274C16.4125 21.3828 14.3957 22.0001 12.3316 22.0001H12.3306C9.93035 21.9975 7.6057 21.1603 5.75517 19.6321C3.90463 18.1039 2.64345 15.9797 2.18793 13.6237C1.73241 11.2677 2.11094 8.82672 3.2586 6.71917C4.34658 4.72121 6.17608 3.16858 8.20153 2.25386L8.23129 2.24048Z"
-      />
-    </svg>
-  );
-}
-
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 20);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  function handleLogoClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (window.location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setOpen(false);
+    }
+  }
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur border-b bg-[var(--nav-bg)] border-[var(--border)]">
-      <div className="mx-auto px-3 sm:px-10 lg:px-5">
-        {/* NAV BAR */}
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[var(--nav-bg)] border-b border-[var(--border)] md:bg-transparent md:border-transparent"
+          : "bg-[var(--nav-bg)] border-b border-[var(--border)]"
+      }`}
+    >
+      <div className="mx-auto px-3 sm:px-10 lg:px-5 pt-2">
         <nav className="relative flex h-16 items-center justify-between">
-          {/* LEFT CLUSTER (mobile): hamburger + theme */}
+          {/* MOBILE HEADER - KEEP SAME */}
           <div className="flex items-center gap-2 md:hidden">
-            {/* Hamburger */}
             <button
               type="button"
               onClick={() => setOpen((s) => !s)}
@@ -61,85 +74,95 @@ export default function Header() {
             </button>
           </div>
 
-          {/* CENTER LOGO (mobile absolute center; desktop normal) */}
+          {/* MOBILE LOGO - KEEP SAME */}
           <Link
-            href="/" 
+            href="/"
+            onClick={handleLogoClick}
             aria-label="Spring Rain — Home"
-            className="
-                absolute left-1/2 -translate-x-1/2
-                md:static md:translate-x-0
-                md:mr-6
-                flex items-center
-                md:hidden
-            "
+            className="absolute left-1/2 -translate-x-1/2 flex items-center md:hidden"
           >
             <Image
-              src={withBasePath("/logo.png")}
+              src={withBasePath('/newlogo.png')}
               alt="Spring Rain Lawn Sprinkler Inc."
               width={180}
               height={54}
-              className="h-10 md:h-11 w-auto"
+              className="h-23 w-auto"
               priority
             />
           </Link>
 
-          {/* DESKTOP CONTENT (replaces mobile clusters) */}
-          <div className="hidden w-full md:flex items-center justify-between">
-            {/* Left Group: Logo + nav */}
-            <div className="flex items-center gap-10">
+          {/* DESKTOP HEADER - NEW STYLE */}
+          <div className="hidden md:flex w-full items-center justify-between">
+            <div className="flex items-center gap-4">
               <Link
                 href="/"
+                onClick={handleLogoClick}
                 aria-label="Spring Rain — Home"
-                className="flex items-center"
+                className="flex items-center shrink-0"
               >
                 <Image
-                  src={withBasePath("/logo.png")}
+                  src={withBasePath('/newlogo.png')}
                   alt="Spring Rain Lawn Sprinkler Inc."
                   width={180}
                   height={54}
-                  className="h-11 w-auto"
+                  className="h-23 w-auto"
                   priority
                 />
               </Link>
-            
-              {/* Center: Nav */}
-              <ul className="flex items-center gap-8 text-[15px] font-display font-medium">
-                {nav.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="hover:text-neutral-950 transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </div>
 
-            {/* Right: theme + call button */}
-            <div className="hidden md:flex items-center gap-2">
-              <a
-                href={`tel:${PHONE_TEL}`}
-                className="inline-flex items-center rounded-full border border-amber-900/20 bg-blue-700 text-white px-4 py-2 text-sm font-medium shadow-sm hover:opacity-90"
+            <div className="flex items-center justify-center flex-1">
+              <div      
+                className="hidden md:flex items-center rounded-full border px-2 h-12 bg-white/95 shadow-[0_12px_35px_rgba(0,0,0,0.12)]"
+                style={{
+                  borderColor: 'var(--border)',
+                  backgroundColor: 'var(--nav-bg)',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+                }}
               >
-                {PHONE_DISPLAY}
-              </a>
+                <ul className="flex items-center gap-1">
+                  {nav.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 text-[var(--nav-fg)] hover:bg-black/5"                
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+
+                <div
+                  className="mx-3 h-6 w-px"
+                  style={{ backgroundColor: 'var(--border)' }}
+                />
+
+                <a
+                  href={`tel:${PHONE_TEL}`}
+                  className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium bg-blue-700 text-white hover:opacity-90 transition"
+                >
+                  {PHONE_DISPLAY}
+                </a>
+              </div>
             </div>
+
+            {/* right-side spacer so center pill stays visually centered */}
+            <div className="w-[180px]" />
           </div>
         </nav>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU - KEEP SAME */}
       {open && (
         <div className="md:hidden border-t bg-[var(--nav-bg)] border-[var(--border)]">
           <div className="mx-auto max-w-screen-xl px-4 py-3">
-            <ul className="flex flex-col ">
+            <ul className="flex flex-col">
               {nav.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="block py-3 text-[16px] text-[var(--nav-fg)]"
+                    className="block py-3 text-[16px] text-[var(--nav-fg) ]"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
